@@ -37,7 +37,7 @@ public class CategoryResource {
 
 	@GetMapping(value = "/{id}") // adicionando id na rota principal
 	public ResponseEntity<Category> findById(@PathVariable Long id) { //path.. reconhece a id escrita na rota
-		Category cat = categoryRepository.findById(id);
+		Category cat = categoryRepository.findById(id).get(); //.get obtem objeto dentro do optional
 				      //new Category(1L, "Eletronics"); antes de instanciar
 		return ResponseEntity.ok().body(cat);
 	}

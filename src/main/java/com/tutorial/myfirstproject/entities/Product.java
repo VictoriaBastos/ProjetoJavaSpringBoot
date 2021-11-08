@@ -3,14 +3,28 @@ package com.tutorial.myfirstproject.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+ // chave primária do banco de dados
+@Entity
 public class Product  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//declarando variáveis
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private Double price;
 	
+	@ManyToOne // chave extrangeira do banco de dados
+	@JoinColumn(name = "category_id")
 	// associando os diferentes objetos (produto e categoria)
 	private Category category;
 

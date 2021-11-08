@@ -37,7 +37,7 @@ public class ProductResource {
 
 	@GetMapping(value = "/{id}") // adicionando id na rota principal
 	public ResponseEntity<Product> findById(@PathVariable Long id) { //path.. reconhece a id escrita na rota
-		Product cat = categoryRepository.findById(id);
+		Product cat = categoryRepository.findById(id).get();
 				      //new Product(1L, "Eletronics"); antes de instanciar
 		return ResponseEntity.ok().body(cat);
 	}
