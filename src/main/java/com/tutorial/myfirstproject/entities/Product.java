@@ -1,32 +1,31 @@
 package com.tutorial.myfirstproject.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-public class Category implements Serializable {
-	/**
-	 * 
-	 */
+public class Product  implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	//declarando variáveis
 	private Long id;
 	private String name;
+	private Double price;
 	
-	@JsonIgnore // acaba com serialização de lista de categorias(evitando json gigante)
-	//relacionando diferentes objetos (Categorias e Produtos) // instanciando lista de produtos
-	private List<Product> products = new ArrayList<>();
-	
-	public Category() {
-	
-	}  
+	// associando os diferentes objetos (produto e categoria)
+	private Category category;
 
-	public Category(Long id, String name) {
+	
+	//construtor. 1o criar construtor vazio, depois usar atalhos de constructors, getters, setters, hash
+	
+	public Product() {
+	}
+	
+	public Product(Long id, String name, Double price, Category category) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.price = price;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -44,15 +43,23 @@ public class Category implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	//acessa lista de produtos
-	public List<Product> getProducts() {
-		return products;
+
+	public Double getPrice() {
+		return price;
 	}
 
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
-	//linhas abaixo criam critério personalizado de comparação
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -66,10 +73,9 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-	//linhas acima criam critério personalizado de comparação
 	
-	 
+	
 }
